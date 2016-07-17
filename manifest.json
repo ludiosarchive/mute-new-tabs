@@ -14,6 +14,21 @@
 	"icons": {
 		"128": "icon/Keep-quiet-sign-by-Rones-fs8.png"
 	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://www.youtube.com/*",
+				"https://vimeo.com/*"
+			],
+			"js": ["unmute_content.js"]
+		}
+	],
+	"externally_connectable": {
+		"matches": [
+			"https://www.youtube.com/*",
+			"https://vimeo.com/*"
+		]
+	},
 	"permissions": [
 		"storage",
 		"webNavigation",

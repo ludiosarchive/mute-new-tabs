@@ -4,10 +4,17 @@ function orTrue(v) {
 	return v === undefined ? true : v;
 }
 
+function assert(condition, message) {
+	if(!condition) {
+		throw message || "Assertion failed";
+	}
+};
+
 function maybeMuteNewTab(tab) {
 	chrome.storage.local.get('muteNewTabs', function(result) {
 		const muteNewTabs = orTrue(result.muteNewTabs);
 		const tabId = tab.id;
+		assert(Number.isInteger(tabId));
 		if(muteNewTabs) {
 			console.log("Muting new tab:", tab);
 			chrome.tabs.update(tabId, {muted: true});
@@ -30,6 +37,7 @@ function navigationCommitted(details) {
 		return;
 	}
 	const tabId = details.tabId;
+	assert(Number.isInteger(tabId));
 	const newUrl = details.url;
 	chrome.storage.local.get('muteOnOriginChange', function(result) {
 		const muteOnOriginChange = orTrue(result.muteOnOriginChange);
@@ -53,5 +61,21 @@ function navigationCommitted(details) {
 	});
 }
 
+function messageFromContentScript(request, sender, sendResponse) {
+	console.log("Message from content script: sender=", sender, "request=", request);
+	if(request !== "unmute") {
+		return;
+	}
+	const tabId = sender.tab.id;
+	assert(Number.isInteger(tabId));
+	chrome.tabs.update(tabId, {muted: false});
+}
+
+// Navigation events in a tab
 chrome.webNavigation.onCommitted.addListener(navigationCommitted);
+
+// New tabs
 chrome.tabs.onCreated.addListener(maybeMuteNewTab);
+
+// Messages from content scripts telling us to unmute
+chrome.runtime.onMessage.addListener(messageFromContentScript);
