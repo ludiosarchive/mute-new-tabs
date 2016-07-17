@@ -35,7 +35,7 @@ function storageChanged(changes, namespace) {
 		var storageChange = changes[key];
 		console.log(
 			"Storage key", key, "in namespace", namespace, "changed.",
-			"Old value was ", storageChange.oldValue, "new value is", storageChange.newValue
+			"Old value was", storageChange.oldValue, "; new value is", storageChange.newValue
 		);
 		keyChanged(key, storageChange.newValue);
 	}
