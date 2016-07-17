@@ -36,7 +36,7 @@ using Chrome on Linux (lucky you!).  On other platforms, if you're crazy enough,
 [might be able to hexedit your Chrome binary](http://stackoverflow.com/questions/23055651/disable-developer-mode-extensions-pop-up)
 to get rid of it (not tested by me).
 
-1.	`git clone https://github.com/ludios/mute-all-tabs-by-default`
+1.	`git clone https://github.com/ludios/mute-new-tabs`
 
 2.	Open `chrome://flags` in Chrome.
 
@@ -47,7 +47,7 @@ to get rid of it (not tested by me).
 
 5.	Check "Developer mode" at the top-right.
 
-6.	Click "Load unpacked extension...", then select the cloned `mute-all-tabs-by-default` directory.
+6.	Click "Load unpacked extension...", then select the cloned `mute-new-tabs` directory.
 
 7.	Check "Allow in incognito" if you also want incognito tabs to be muted by default.
 
