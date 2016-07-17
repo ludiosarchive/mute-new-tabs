@@ -71,11 +71,11 @@ function messageFromContentScript(request, sender, sendResponse) {
 	chrome.tabs.update(tabId, {muted: false});
 }
 
-// Navigation events in a tab
-chrome.webNavigation.onCommitted.addListener(navigationCommitted);
-
 // New tabs
 chrome.tabs.onCreated.addListener(maybeMuteNewTab);
+
+// Navigation events in a tab
+chrome.webNavigation.onCommitted.addListener(navigationCommitted);
 
 // Messages from content scripts telling us to unmute
 chrome.runtime.onMessage.addListener(messageFromContentScript);

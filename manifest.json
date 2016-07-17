@@ -18,7 +18,8 @@
 		{
 			"matches": [
 				"https://www.youtube.com/*",
-				"https://vimeo.com/*"
+				"https://vimeo.com/*",
+				"https://soundcloud.com/*"
 			],
 			"js": ["unmute_content.js"]
 		}
@@ -26,7 +27,8 @@
 	"externally_connectable": {
 		"matches": [
 			"https://www.youtube.com/*",
-			"https://vimeo.com/*"
+			"https://vimeo.com/*",
+			"https://soundcloud.com/*"
 		]
 	},
 	"permissions": [

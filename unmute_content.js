@@ -27,6 +27,8 @@ function mouseDown(ev) {
 		unmuteMyTab();
 	} else if(host === "vimeo.com" && getClassNames(ev.target, 3).includes("volume")) {
 		unmuteMyTab();
+	} else if(host === "soundcloud.com" && /^volume__/.test(ev.target.className)) {
+		unmuteMyTab();
 	}
 }
 
