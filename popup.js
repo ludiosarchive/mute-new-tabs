@@ -25,11 +25,3 @@ chrome.storage.local.get(Object.keys(toggles), function(result) {
 		toggles[toggle].checked = orTrue(result[toggle]);
 	}
 });
-
-byId('unmute-label').addEventListener('mouseenter', function() {
-	byId('info-automatic-unmute').style.display = "block";
-});
-
-byId('unmute-label').addEventListener('mouseleave', function() {
-	byId('info-automatic-unmute').style.display = "none";
-});

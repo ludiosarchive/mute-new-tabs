@@ -35,6 +35,11 @@ function mouseDown(ev) {
 		unmuteMyTab();
 	} else if(host === "soundcloud.com" && /^volume__/.test(ev.target.className)) {
 		unmuteMyTab();
+	} else if(host === "mynoise.net") {
+		const classNames = getClassNames(ev.target, 5);
+		if(classNames.includes("mixer") || classNames.includes("controlers")) {
+			unmuteMyTab();
+		}
 	}
 }
 

@@ -3,7 +3,6 @@
 	<head>
 		<title>Mute New Tabs</title>
 		<style>
-			/* Remove padding so that the more of the area around the checkbox <label> is clickable */
 			body, html {
 				padding: 0;
 				margin: 0;
@@ -32,9 +31,6 @@
 			.info {
 				padding: 0.35em 0.75em 0.35em 0.5em;
 			}
-			#info-automatic-unmute {
-				display: none;
-			}
 			.checkbox-equivalent-space {
 				visibility: hidden;
 			}
@@ -55,8 +51,8 @@
 			<input type="checkbox" id="unmute-on-volume-control">Unmute when clicking a<br>
 			<input type="checkbox" class="checkbox-equivalent-space"></input>volume control on a page
 		</label>
-		<div class="info" id="info-automatic-unmute">
-			<small>Automatic unmute is supported on {youtube, vimeo, soundcloud, twitter}.com</small>
+		<div class="info">
+			<small>Automatic unmute is <a href="https://github.com/ludios/mute-new-tabs/blob/master/manifest.json#L19" target="_blank">supported on these domains</a>.</small>
 		</div>
 		<script src="popup.js"></script>
 	</body>
