@@ -13,17 +13,20 @@ and the tab mute shouldn't get in the way.
 
 All three features can be toggled in the extension's popup window:
 
-<img src="screenshot.png" alt="Screenshot of menu showing 'Mute new tabs', 'Mute on origin change', and 'Unmute when clicking a volume control on a page'" width="250" height="161">
+<img src="screenshot.png" alt="Screenshot of menu showing 'Mute new tabs',
+'Mute on origin change', and 'Unmute when clicking a volume control on a page'" width="250" height="161">
 
 **You must enable "Tab audio muting UI control" in `chrome://flags` to use this
 extension; see the instructions below.**
 
-This extension isn't in the Chrome web store because 1) I don't want to deal with it, 2) you shouldn't blindly trust an auto-updating extension that can do anything, and 3) it still requires touching `chrome://flags`.
+This extension isn't in the Chrome Web Store because 1) I don't want to deal with it,
+2) you shouldn't blindly trust an auto-updating extension that can do anything, and
+3) it still requires touching `chrome://flags`.
 
 
 Install
 ===
-Note that if you install an extension from outside the Chrome web store, you'll see a
+Note that if you install an extension from outside the Chrome Web Store, you'll see a
 "developer mode extensions" nag popup every time you start the browser, unless you're
 using Chrome on Linux (lucky you!).  On other platforms, if you're crazy enough, you
 [might be able to hexedit your Chrome binary](http://stackoverflow.com/questions/23055651/disable-developer-mode-extensions-pop-up)
