@@ -14,7 +14,7 @@ extension; see the instructions below.
 
 Install
 ===
-1.	Run Chrome on Linux, which is the only Chrome platform that lets you install an
+1.	Run Chrome on Linux, which is the only platform that lets you install an
 	extension from source without seeing a nag popup every time you start the browser.
 
 2.	`git clone https://github.com/ludios/mute-all-tabs-by-default`
