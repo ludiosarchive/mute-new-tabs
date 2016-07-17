@@ -1,4 +1,4 @@
-Mute all tabs by default
+Mute New Tabs
 ===
 This is a Chrome extension that fixes the peculiar decision to allow websites
 to make noise without your permission.  It mutes the audio in all new tabs,
