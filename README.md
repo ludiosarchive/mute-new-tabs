@@ -19,9 +19,10 @@ All three features can be toggled in the extension's popup window:
 **You must enable "Tab audio muting UI control" in `chrome://flags` to use this
 extension; see the instructions below.**
 
-This extension isn't in the Chrome Web Store because 1) I don't want to deal with it,
-2) you shouldn't blindly trust an auto-updating extension with `webNavigation`
-and `tabs` permissions, and 3) it still requires touching `chrome://flags`.
+Mute New Tabs isn't in the Chrome Web Store because 1) I don't want to deal
+with it, 2) you shouldn't blindly trust an auto-updating extension with
+`webNavigation` and `tabs` permissions, and 3) it still requires touching
+`chrome://flags`.
 
 
 Install
@@ -36,7 +37,7 @@ to get rid of it (not tested by me).
 
 2.	Open `chrome://flags` in Chrome.
 
-3.	Find <b>Tab audio muting UI control</b>, click "Enable", then restart Chrome.
+3.	Find **Tab audio muting UI control**, click "Enable", then restart Chrome.
 	(Make sure to actually restart it, not just close one window.)
 
 4.	Open `chrome://extensions` in Chrome.
