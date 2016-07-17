@@ -13,14 +13,20 @@ function assert(condition, message) {
 const settings = {
 	muteNewTabs: true,
 	muteOnOriginChange: true,
+	muteAllTabsOnStartup: true,
 	unmuteOnVolumeControl: true
 }
 
 // Populate settings as soon as possible
-chrome.storage.local.get(['muteNewTabs', 'muteOnOriginChange', 'unmuteOnVolumeControl'], function(result) {
+chrome.storage.local.get(['muteNewTabs', 'muteOnOriginChange', 'muteAllTabsOnStartup', 'unmuteOnVolumeControl'], function(result) {
 	settings.muteNewTabs = orTrue(result.muteNewTabs);
 	settings.muteOnOriginChange = orTrue(result.muteOnOriginChange);
+	settings.muteAllTabsOnStartup = orTrue(result.muteAllTabsOnStartup);
 	settings.unmuteOnVolumeControl = orTrue(result.unmuteOnVolumeControl);
+
+	if(settings.muteAllTabsOnStartup) {
+		muteAllTabs();
+	}
 });
 
 function keyChanged(key, newValue) {
@@ -41,12 +47,29 @@ function storageChanged(changes, namespace) {
 	}
 }
 
+function muteTab(tabId) {
+	assert(Number.isInteger(tabId));
+	chrome.tabs.update(tabId, {muted: true});
+}
+
+function unmuteTab(tabId) {
+	assert(Number.isInteger(tabId));
+	chrome.tabs.update(tabId, {muted: false});
+}
+
+function muteAllTabs() {
+	chrome.tabs.query({}, function(tabs) {
+		for(const tab of tabs) {
+			muteTab(tab.id);
+		}
+	});
+}
+
 function maybeMuteNewTab(tab) {
 	const tabId = tab.id;
-	assert(Number.isInteger(tabId));
 	if(settings.muteNewTabs) {
 		console.log("Muting new tab:", tab);
-		chrome.tabs.update(tabId, {muted: true});
+		muteTab(tabId);
 	} else {
 		console.log("Not muting new tab:", tab);
 	}
@@ -75,7 +98,7 @@ function navigationCommitted(details) {
 			getOrigin(oldUrl) !== getOrigin(newUrl);
 		if(needMute) {
 			console.log("Muting tab because new origin:", details);
-			chrome.tabs.update(tabId, {muted: true});
+			muteTab(tabId);
 		} else {
 			console.log("Not muting tab because same origin:", details);
 		}
@@ -93,7 +116,7 @@ function messageFromContentScript(request, sender, sendResponse) {
 	}
 	const tabId = sender.tab.id;
 	assert(Number.isInteger(tabId));
-	chrome.tabs.update(tabId, {muted: false});
+	unmuteTab(tabId);
 }
 
 // New tabs

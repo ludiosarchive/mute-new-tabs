@@ -7,20 +7,24 @@ websites to make noise without your permission.  It mutes the audio in all new
 tabs.  If necessary, you can un-mute a tab by clicking the mute/un-mute icon on
 the tab itself.
 
-It also mutes the tab when you navigate to a different origin.
+**You must enable "Tab audio muting UI control" in `chrome://flags` to see the
+mute/un-mute icon on the tab; see the instructions below.**
+
+Mute New Tabs also mutes the tab when you navigate to a different origin.
 
 It also injects a content script on {youtube, vimeo, soundcloud, twitter}.com that
 unmutes the tab when you click on a volume control on the page.
 Clicking a volume control shows a clear intent to change the volume, so the
 tab mute shouldn't get in the way.
 
-All three features can be toggled in the extension's popup window:
+Because Chrome doesn't remember the mute state of tabs, it also mutes all
+tabs on startup.
+
+All four features can be toggled in the extension's popup window:
 
 <img src="screenshot.png" alt="Screenshot of menu showing 'Mute new tabs',
-'Mute on origin change', and 'Unmute when clicking a volume control on a page'" width="250" height="161">
-
-**You must enable "Tab audio muting UI control" in `chrome://flags` to use this
-extension; see the instructions below.**
+'Mute on origin change', 'Mute all tabs on startup', and
+'Unmute when clicking a volume control on a page'" width="243" height="189">
 
 Mute New Tabs isn't in the Chrome Web Store because 1) I don't want to deal
 with it, 2) you shouldn't blindly trust an auto-updating extension with
