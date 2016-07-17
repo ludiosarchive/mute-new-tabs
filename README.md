@@ -26,9 +26,11 @@ Install
 
 5.	Open `chrome://extensions/` in Chrome.
 
-6.	Click "Load unpacked extension...", then select the cloned `mute-all-tabs-by-default` directory.
+6.	Check "Developer mode" at the top-right.
 
-7.	Check "Allow in incognito" if you also want incognito tabs to be muted by default.
+7.	Click "Load unpacked extension...", then select the cloned `mute-all-tabs-by-default` directory.
+
+8.	Check "Allow in incognito" if you also want incognito tabs to be muted by default.
 
 
 Thanks
