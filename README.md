@@ -2,25 +2,27 @@
 
 Mute New Tabs
 ===
-Mute New Tabs is a Chrome extension that fixes the peculiar mistake of allowing
-websites to make noise without your permission.  It uses Chrome's tab muting API
-to automatically mute new tabs.  If needed, you can un-mute a tab by clicking the
-mute/un-mute icon on the tab itself.
+Mute New Tabs is a Chrome extension that fixes the peculiar mistake of browsers
+allowing websites to make noise without your permission.  It uses Chrome's ta
+muting API to automatically mute new tabs.  If needed, you can un-mute a tab
+by clicking the mute/un-mute icon on the tab itself.
 
 **Note: you must enable "Tab audio muting UI control" in `chrome://flags` to see the
 mute/un-mute icon on the tab.**
 
-Mute New Tabs also mutes the tab when you navigate to a different origin.
+Besides muting new tabs, the extension also:
 
-It also injects a [content script](https://github.com/ludios/mute-new-tabs/blob/master/unmute_content.js)
-on {youtube, vimeo, soundcloud, twitter}.com
-([and more](https://github.com/ludios/mute-new-tabs/blob/master/manifest.json#L19))
-that unmutes the tab when you click on a volume control on the page.
-Clicking a volume control shows a clear intent to change the volume, so the
-tab mute shouldn't get in the way.
+1.	Mutes the tab when you navigate to a different origin.
 
-Because Chrome doesn't remember the mute state of tabs, it also mutes all
-tabs on startup.
+2.	Injects a [content script](https://github.com/ludios/mute-new-tabs/blob/master/unmute_content.js)
+	on {youtube, vimeo, soundcloud, twitter}.com
+	([and more](https://github.com/ludios/mute-new-tabs/blob/master/manifest.json#L19))
+	to unmute the tab when you click on a volume control on the page.
+	Clicking a volume control shows a clear intent to change the volume, so the
+	tab mute shouldn't get in the way.
+
+3.	Mutes tabs on startup, because Chrome doesn't remember which tabs were
+	muted.
 
 All four features can be toggled in the extension's popup window:
 
