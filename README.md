@@ -1,7 +1,12 @@
 Mute all tabs by default
 ===
-This is a Chrome extension that mutes all new tabs until you manually un-mute
+This is a Chrome extension that mutes all new tabs, until you manually un-mute
 them by clicking the mute/un-mute icon in the tab.
+
+It also mutes the tab when you navigate to a different origin.
+
+Both of the automatic muting features can be toggled in the extension's popup
+window.
 
 You must enable "Tab audio muting UI control" in `chrome://flags` to use this
 extension; see the instructions below.
