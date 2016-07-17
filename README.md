@@ -26,12 +26,12 @@ Install
 
 2.	`git clone https://github.com/ludios/mute-all-tabs-by-default`
 
-3.	Open `chrome://flags/` in Chrome.
+3.	Open `chrome://flags` in Chrome.
 
 4.	Find <b>Tab audio muting UI control</b>, click "Enable", then restart Chrome.
 	(Make sure to actually restart it, not just close one window.)
 
-5.	Open `chrome://extensions/` in Chrome.
+5.	Open `chrome://extensions` in Chrome.
 
 6.	Check "Developer mode" at the top-right.
 
