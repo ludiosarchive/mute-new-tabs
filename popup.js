@@ -1,21 +1,31 @@
 "use strict";
 
-const muteNewTabsElem = document.getElementById('mute_new_tabs');
-const muteOnOriginChange = document.getElementById('mute_on_origin_change');
-
-muteNewTabsElem.onchange = function(ev) {
-	chrome.storage.local.set({muteNewTabs: ev.target.checked}, function() {});
+function byId(id) {
+	return document.getElementById(id);
 }
 
-muteOnOriginChange.onchange = function(ev) {
-	chrome.storage.local.set({muteOnOriginChange: ev.target.checked}, function() {});
-}
+const muteNewTabsElem = byId('mute-new-tabs');
+const muteOnOriginChange = byId('mute-on-origin-change');
+const unmuteOnVolumeControl = byId('unmute-on-volume-control');
+
+muteNewTabsElem.onchange = ev => chrome.storage.local.set({muteNewTabs: ev.target.checked}, function() {});
+muteOnOriginChange.onchange = ev => chrome.storage.local.set({muteOnOriginChange: ev.target.checked}, function() {});
+unmuteOnVolumeControl.onchange = ev => chrome.storage.local.set({unmuteOnVolumeControl: ev.target.checked}, function() {});
 
 function orTrue(v) {
 	return typeof v === "boolean" ? v : true;
 }
 
-chrome.storage.local.get(['muteNewTabs', 'muteOnOriginChange'], function(result) {
+chrome.storage.local.get(['muteNewTabs', 'muteOnOriginChange', 'unmuteOnVolumeControl'], function(result) {
 	muteNewTabsElem.checked = orTrue(result.muteNewTabs);
 	muteOnOriginChange.checked = orTrue(result.muteOnOriginChange);
+	unmuteOnVolumeControl.checked = orTrue(result.unmuteOnVolumeControl);
+});
+
+byId('unmute-label').addEventListener('mouseenter', function() {
+	byId('info-automatic-unmute').style.display = "block";
+});
+
+byId('unmute-label').addEventListener('mouseleave', function() {
+	byId('info-automatic-unmute').style.display = "none";
 });

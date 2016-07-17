@@ -29,15 +29,26 @@
 				-webkit-user-select: none;
 				user-select: none;
 			}
+			.info {
+				padding: 0.35em 0.75em 0.35em 0.5em;
+			}
+			#info-automatic-unmute {
+				display: none;
+			}
 			label.toggle:hover {
 				background-color: #4A90D9;
 				color: #fff;
 			}
+			small {
+				color: #777;
+			}
 		</style>
 	</head>
 	<body>
-		<label class="toggle"><input type="checkbox" id="mute_new_tabs">Mute new tabs</label>
-		<label class="toggle"><input type="checkbox" id="mute_on_origin_change">Mute on origin change</label>
+		<label class="toggle"><input type="checkbox" id="mute-new-tabs">Mute new tabs</label>
+		<label class="toggle"><input type="checkbox" id="mute-on-origin-change">Mute on origin change</label>
+		<label class="toggle" id="unmute-label"><input type="checkbox" id="unmute-on-volume-control">Unmute when clicking a<br><span style="display: inline-block; width: 24px;"></span>volume control on a page</label>
+		<div class="info" id="info-automatic-unmute"><small>Automatic unmute is supported on {youtube, vimeo, soundcloud}.com</small></div>
 		<script src="popup.js"></script>
 	</body>
 </html>

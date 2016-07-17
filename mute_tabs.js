@@ -12,13 +12,15 @@ function assert(condition, message) {
 
 const settings = {
 	muteNewTabs: true,
-	muteOnOriginChange: true
+	muteOnOriginChange: true,
+	unmuteOnVolumeControl: true
 }
 
 // Populate settings as soon as possible
-chrome.storage.local.get(['muteNewTabs', 'muteOnOriginChange'], function(result) {
+chrome.storage.local.get(['muteNewTabs', 'muteOnOriginChange', 'unmuteOnVolumeControl'], function(result) {
 	settings.muteNewTabs = orTrue(result.muteNewTabs);
 	settings.muteOnOriginChange = orTrue(result.muteOnOriginChange);
+	settings.unmuteOnVolumeControl = orTrue(result.unmuteOnVolumeControl);
 });
 
 function keyChanged(key, newValue) {
@@ -84,6 +86,9 @@ function navigationCommitted(details) {
 function messageFromContentScript(request, sender, sendResponse) {
 	console.log("Message from content script: sender=", sender, "request=", request);
 	if(request !== "unmute") {
+		return;
+	}
+	if(!settings.unmuteOnVolumeControl) {
 		return;
 	}
 	const tabId = sender.tab.id;
