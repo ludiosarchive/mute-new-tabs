@@ -63,7 +63,7 @@ Thanks to [rones](https://openclipart.org/user-detail/rones) for
 [the keep-quiet sign](https://openclipart.org/detail/219746/keep-quiet-sign) that I've used for the extension icon.
 
 
-The scourge of autoplaying videos
+The epidemic of autoplaying videos
 ===
 *	[Autoplay is bad for all users](http://www.punkchip.com/autoplay-is-bad-for-all-users/)
 
