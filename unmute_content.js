@@ -1,8 +1,8 @@
 "use strict";
 
 /**
- * Unmute tabs on youtube.com and vimeo.com when you interact with the video's
- * mute button or volume slider.
+ * Content script that assists in unmuting tabs on supported sites when you
+ * interact with a mute button or volume slider on the page.
  */
 
 function unmuteMyTab() {
@@ -24,7 +24,6 @@ function getClassNames(elem, depth) {
 const host = document.location.host;
 
 function mouseDown(ev) {
-	//console.log(ev);
 	if(host === "www.youtube.com" && /^ytp-(volume|mute)-/.test(ev.target.className)) {
 		unmuteMyTab();
 	} else if(host === "vimeo.com" && getClassNames(ev.target, 3).includes("volume")) {
