@@ -33,7 +33,7 @@ const tabIdToUrl = Object.create(null);
 
 function navigationCommitted(details) {
 	if(details.frameId !== 0) {
-		// Ignore navigations in subframes
+		// Ignore navigation in subframes
 		return;
 	}
 	const tabId = details.tabId;
