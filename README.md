@@ -13,7 +13,7 @@ and the tab mute shouldn't get in the way.
 
 All three features can be toggled in the extension's popup window:
 
-![Extension screenshot](screenshot.png)
+<img src="screenshot.png" alt="Screenshot of menu showing 'Mute new tabs', 'Mute on origin change', and 'Unmute when clicking a volume control on a page'" width="250" height="161">
 
 **You must enable "Tab audio muting UI control" in `chrome://flags` to use this
 extension; see the instructions below.**
