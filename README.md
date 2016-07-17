@@ -18,26 +18,31 @@ All three features can be toggled in the extension's popup window:
 **You must enable "Tab audio muting UI control" in `chrome://flags` to use this
 extension; see the instructions below.**
 
+This extension isn't in the Chrome web store because 1) I don't want to deal with it 2) You shouldn't blindly trust an extension that can do anything 3) It still requires a `chrome://flags` change.
+
 
 Install
 ===
-1.	Run Chrome on Linux, which is the only platform that lets you install an
-	extension from source without seeing a nag popup every time you start the browser.
+Note that if you install an extension from outside the Chrome web store, you'll see a
+"developer mode active" nag popup every time you start the browser, unless you're
+using Chrome on Linux (lucky you!).  On other platforms, if you're crazy enough, you
+[might be able to hexedit your Chrome binary](http://stackoverflow.com/questions/23055651/disable-developer-mode-extensions-pop-up)
+to get rid of it (untested by me).
 
-2.	`git clone https://github.com/ludios/mute-all-tabs-by-default`
+1.	`git clone https://github.com/ludios/mute-all-tabs-by-default`
 
-3.	Open `chrome://flags` in Chrome.
+2.	Open `chrome://flags` in Chrome.
 
-4.	Find <b>Tab audio muting UI control</b>, click "Enable", then restart Chrome.
+3.	Find <b>Tab audio muting UI control</b>, click "Enable", then restart Chrome.
 	(Make sure to actually restart it, not just close one window.)
 
-5.	Open `chrome://extensions` in Chrome.
+4.	Open `chrome://extensions` in Chrome.
 
-6.	Check "Developer mode" at the top-right.
+5.	Check "Developer mode" at the top-right.
 
-7.	Click "Load unpacked extension...", then select the cloned `mute-all-tabs-by-default` directory.
+6.	Click "Load unpacked extension...", then select the cloned `mute-all-tabs-by-default` directory.
 
-8.	Check "Allow in incognito" if you also want incognito tabs to be muted by default.
+7.	Check "Allow in incognito" if you also want incognito tabs to be muted by default.
 
 
 Thanks
