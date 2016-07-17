@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Mute New Tabs",
 	"description": "Mutes new tabs until you un-mute them",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"background": {
 		"scripts": ["mute_tabs.js"],
 		"persistent": true
