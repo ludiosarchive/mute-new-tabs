@@ -34,7 +34,7 @@ Note that if you install an extension from outside the Chrome Web Store, you'll 
 "developer mode extensions" nag popup every time you start the browser, unless you're
 using Chrome on Linux (lucky you!).  On other platforms, if you're crazy enough, you
 [might be able to hexedit your Chrome binary](http://stackoverflow.com/questions/23055651/disable-developer-mode-extensions-pop-up)
-to get rid of it (not tested by me).
+to get rid of it (I have not tested this).
 
 1.	`git clone https://github.com/ludios/mute-new-tabs`
 
