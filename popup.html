@@ -9,8 +9,8 @@
 				margin: 0;
 			}
 			body {
-				width: 10em;
-				font-family: sans-serif;
+				font-size: 14px;
+				font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 			}
 			/* http://stackoverflow.com/questions/306252/how-to-align-checkboxes-and-their-labels-consistently-cross-browsers */
 			input[type=checkbox], input[type=radio] {
@@ -21,15 +21,15 @@
 			input[type=radio] {
 				bottom: 2px;
 			}
-			label {
-				width: 100%;
-				padding: 0.5em;
+			label.toggle {
+				white-space: nowrap;
+				padding: 0.5em 0.75em 0.5em 0.5em;
 				display: block;
 			}
 		</style>
 	</head>
 	<body>
-		<label><input type="checkbox" id="mute_new_tabs">Mute new tabs</label>
+		<label class="toggle"><input type="checkbox" id="mute_new_tabs">Mute new tabs</label>
 		<script src="popup.js"></script>
 	</body>
 </html>
