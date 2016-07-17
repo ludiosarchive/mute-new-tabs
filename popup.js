@@ -12,15 +12,10 @@ muteOnOriginChange.onchange = function(ev) {
 }
 
 function orTrue(v) {
-	return v === undefined ? true : v;
+	return typeof v === "boolean" ? v : true;
 }
 
-chrome.storage.local.get('muteNewTabs', function(result) {
-	const muteNewTabs = orTrue(result.muteNewTabs);
-	muteNewTabsElem.checked = muteNewTabs;
-});
-
-chrome.storage.local.get('muteOnOriginChange', function(result) {
-	const muteOnOriginChange = orTrue(result.muteOnOriginChange);
-	muteOnOriginChange.checked = muteOnOriginChange;
+chrome.storage.local.get(['muteNewTabs', 'muteOnOriginChange'], function(result) {
+	muteNewTabsElem.checked = orTrue(result.muteNewTabs);
+	muteOnOriginChange.checked = orTrue(result.muteOnOriginChange);
 });
