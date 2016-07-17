@@ -18,16 +18,16 @@ All three features can be toggled in the extension's popup window:
 **You must enable "Tab audio muting UI control" in `chrome://flags` to use this
 extension; see the instructions below.**
 
-This extension isn't in the Chrome web store because 1) I don't want to deal with it 2) You shouldn't blindly trust an extension that can do anything 3) It still requires a `chrome://flags` change.
+This extension isn't in the Chrome web store because 1) I don't want to deal with it, 2) you shouldn't blindly trust an auto-updating extension that can do anything, and 3) it still requires touching `chrome://flags`.
 
 
 Install
 ===
 Note that if you install an extension from outside the Chrome web store, you'll see a
-"developer mode active" nag popup every time you start the browser, unless you're
+"developer mode extensions" nag popup every time you start the browser, unless you're
 using Chrome on Linux (lucky you!).  On other platforms, if you're crazy enough, you
 [might be able to hexedit your Chrome binary](http://stackoverflow.com/questions/23055651/disable-developer-mode-extensions-pop-up)
-to get rid of it (untested by me).
+to get rid of it (not tested by me).
 
 1.	`git clone https://github.com/ludios/mute-all-tabs-by-default`
 
