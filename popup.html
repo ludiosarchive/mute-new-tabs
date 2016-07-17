@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Mute All Tabs By Default</title>
+		<title>Mute all tabs by default</title>
 		<style>
 			/* Remove padding so that the more of the area around the checkbox <label> is clickable */
 			body, html {
@@ -9,7 +9,7 @@
 				margin: 0;
 			}
 			body {
-				font-size: 14px;
+				font-size: 12px;
 				font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 			}
 			/* http://stackoverflow.com/questions/306252/how-to-align-checkboxes-and-their-labels-consistently-cross-browsers */
@@ -23,14 +23,18 @@
 			}
 			label.toggle {
 				white-space: nowrap;
-				padding: 0.5em 0.75em 0.5em 0.5em;
+				padding: 0.3em 0.75em 0.3em 0.5em;
 				display: block;
+			}
+			label.toggle:hover {
+				background-color: #4A90D9;
+				color: #fff;
 			}
 		</style>
 	</head>
 	<body>
 		<label class="toggle"><input type="checkbox" id="mute_new_tabs" checked>Mute new tabs</label>
-		<label class="toggle"><input type="checkbox" id="mute_on_origin_change" checked>Mute when origin changes</label>
+		<label class="toggle"><input type="checkbox" id="mute_on_origin_change" checked>Mute on origin change</label>
 		<script src="popup.js"></script>
 	</body>
 </html>
