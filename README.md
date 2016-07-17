@@ -37,7 +37,7 @@ with it, 2) you shouldn't blindly trust an auto-updating extension with
 Install
 ===
 Note that if you install an extension from outside the Chrome Web Store, you'll see a
-"developer mode extensions" nag popup every time you start the browser, unless you're
+"developer mode extensions" nag popup every time you start Chrome, unless you're
 using Chrome on Linux (lucky you!).  On other platforms, if you're crazy enough, you
 [might be able to hexedit your Chrome binary](http://stackoverflow.com/questions/23055651/disable-developer-mode-extensions-pop-up)
 to get rid of it (I have not tested this).
