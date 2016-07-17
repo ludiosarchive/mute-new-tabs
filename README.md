@@ -12,7 +12,8 @@ mute/un-mute icon on the tab.**
 
 Mute New Tabs also mutes the tab when you navigate to a different origin.
 
-It also injects a content script on {youtube, vimeo, soundcloud, twitter}.com
+It also injects a [content script](https://github.com/ludios/mute-new-tabs/blob/master/unmute_content.js)
+on {youtube, vimeo, soundcloud, twitter}.com
 ([and more](https://github.com/ludios/mute-new-tabs/blob/master/manifest.json#L19))
 that unmutes the tab when you click on a volume control on the page.
 Clicking a volume control shows a clear intent to change the volume, so the
