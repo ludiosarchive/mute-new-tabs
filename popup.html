@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Mute All Tabs By Default</title>
+		<style>
+			/* Remove padding so that the more of the area around the checkbox <label> is clickable */
+			body, html {
+				padding: 0;
+				margin: 0;
+			}
+			body {
+				width: 10em;
+				font-family: sans-serif;
+			}
+			/* http://stackoverflow.com/questions/306252/how-to-align-checkboxes-and-their-labels-consistently-cross-browsers */
+			input[type=checkbox], input[type=radio] {
+				vertical-align: middle;
+				position: relative;
+				bottom: 1px;
+			}
+			input[type=radio] {
+				bottom: 2px;
+			}
+			label {
+				width: 100%;
+				padding: 0.5em;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<label><input type="checkbox" id="mute_new_tabs">Mute new tabs</label>
+		<script src="popup.js"></script>
+	</body>
+</html>

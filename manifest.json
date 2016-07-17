@@ -1,0 +1,18 @@
+{
+	"manifest_version": 2,
+	"name": "Mute all tabs by default",
+	"description": "Mute new tabs until you un-mute them",
+	"version": "0.1",
+	"background": {
+		"persistent": false,
+		"scripts": ["mute_tabs.js"]
+	},
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	},
+	"permissions": [
+		"storage",
+		"tabs"
+	]
+}
