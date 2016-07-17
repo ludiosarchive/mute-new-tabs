@@ -59,5 +59,16 @@ to get rid of it (I have not tested this).
 
 Thanks
 ===
-Thanks to https://openclipart.org/user-detail/rones for
-https://openclipart.org/detail/219746/keep-quiet-sign, which I've used for the extension icon.
+Thanks to [rones](https://openclipart.org/user-detail/rones) for
+[the keep-quiet sign](https://openclipart.org/detail/219746/keep-quiet-sign) that I've used for the extension icon.
+
+
+The scourge of autoplaying videos
+===
+*	[Autoplay is bad for all users](http://www.punkchip.com/autoplay-is-bad-for-all-users/)
+
+*	[Autoplay is still bad for all users](http://www.punkchip.com/autoplay-is-still-bad-for-all-users/)
+
+*	[Like it or not, autoplay video won](http://digiday.com/publishers/autoplay-video-beat-regular-video-sorry-guys/)
+
+*	[Auto-play is evil](https://askleo.com/auto-play-is-evil/)
