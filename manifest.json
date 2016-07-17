@@ -1,15 +1,18 @@
 {
 	"manifest_version": 2,
 	"name": "Mute all tabs by default",
-	"description": "Mute new tabs until you un-mute them",
+	"description": "Mutes new tabs until you un-mute them",
 	"version": "0.1",
 	"background": {
 		"persistent": false,
 		"scripts": ["mute_tabs.js"]
 	},
 	"browser_action": {
-		"default_icon": "icon.png",
+		"default_icon": "icon/Keep-quiet-sign-by-Rones-fs8.png",
 		"default_popup": "popup.html"
+	},
+	"icons": {
+		"128": "icon/Keep-quiet-sign-by-Rones-fs8.png"
 	},
 	"permissions": [
 		"storage",
