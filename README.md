@@ -10,18 +10,18 @@ extension; see the instructions below.
 Install
 ===
 1.	Run Chrome on Linux, which is the only Chrome platform that lets you install an
-	extension from source without seeing a nag screen every time you start the browser.
+	extension from source without seeing a nag popup every time you start the browser.
 
 2.	`git clone https://github.com/ludios/mute-all-tabs-by-default`
 
 3.	Open `chrome://flags/` in Chrome.
 
-4.	Find <b>Tab audio muting UI control</b>, click <u>Enable</u>, then restart Chrome.
-	(Make sure you actually restart it, not just close one window.)
+4.	Find <b>Tab audio muting UI control</b>, click "Enable", then restart Chrome.
+	(Make sure to actually restart it, not just close one window.)
 
 5.	Open `chrome://extensions/` in Chrome.
 
-6.	Click "Load unpacked extension...", then select the `mute-all-tabs-by-default` directory that you cloned.
+6.	Click "Load unpacked extension...", then select the cloned `mute-all-tabs-by-default` directory.
 
 7.	Check "Allow in incognito" if you also want incognito tabs to be muted by default.
 
@@ -29,4 +29,4 @@ Install
 Thanks
 ===
 Thanks to https://openclipart.org/user-detail/rones for
-https://openclipart.org/detail/219746/keep-quiet-sign, which I've used as the extension icon.
+https://openclipart.org/detail/219746/keep-quiet-sign, which I've used for the extension icon.
