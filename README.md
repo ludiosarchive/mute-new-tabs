@@ -4,7 +4,7 @@ Mute New Tabs
 ===
 Mute New Tabs is a Chrome extension that fixes the peculiar decision to allow
 websites to make noise without your permission.  It mutes the audio in all new
-tabs.  If necessary, you can un-mute a tab by clicking the mute/un-mute icon in
+tabs.  If necessary, you can un-mute a tab by clicking the mute/un-mute icon on
 the tab itself.
 
 It also mutes the tab when you navigate to a different origin.
