@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Unmute tabs on youtube.com and vimeo.com when you interact with the video's
  * mute button or volume slider.

@@ -1,3 +1,5 @@
+"use strict";
+
 const muteNewTabsElem = document.getElementById('mute_new_tabs');
 const muteOnOriginChange = document.getElementById('mute_on_origin_change');
 

@@ -1,7 +1,7 @@
-// TODO: listen for storage events instead of getting the setting each time?
+"use strict";
 
 function orTrue(v) {
-	return v === undefined ? true : v;
+	return typeof v === "boolean" ? v : true;
 }
 
 function assert(condition, message) {
@@ -10,18 +10,44 @@ function assert(condition, message) {
 	}
 };
 
+const settings = {
+	muteNewTabs: true,
+	muteOnOriginChange: true
+}
+
+// Populate settings as soon as possible
+chrome.storage.local.get(['muteNewTabs', 'muteOnOriginChange'], function(result) {
+	settings.muteNewTabs = orTrue(result.muteNewTabs);
+	settings.muteOnOriginChange = orTrue(result.muteOnOriginChange);
+});
+
+function keyChanged(key, newValue) {
+	assert(typeof key === "string");
+	if(settings.hasOwnProperty(key)) {
+		settings[key] = orTrue(newValue);
+	}
+}
+
+function storageChanged(changes, namespace) {
+	for(const key in changes) {
+		var storageChange = changes[key];
+		console.log(
+			"Storage key", key, "in namespace", namespace, "changed.",
+			"Old value was ", storageChange.oldValue, "new value is", storageChange.newValue
+		);
+		keyChanged(key, storageChange.newValue);
+	}
+}
+
 function maybeMuteNewTab(tab) {
-	chrome.storage.local.get('muteNewTabs', function(result) {
-		const muteNewTabs = orTrue(result.muteNewTabs);
-		const tabId = tab.id;
-		assert(Number.isInteger(tabId));
-		if(muteNewTabs) {
-			console.log("Muting new tab:", tab);
-			chrome.tabs.update(tabId, {muted: true});
-		} else {
-			console.log("Not muting new tab:", tab);
-		}
-	});
+	const tabId = tab.id;
+	assert(Number.isInteger(tabId));
+	if(settings.muteNewTabs) {
+		console.log("Muting new tab:", tab);
+		chrome.tabs.update(tabId, {muted: true});
+	} else {
+		console.log("Not muting new tab:", tab);
+	}
 }
 
 function getOrigin(url) {
@@ -39,26 +65,20 @@ function navigationCommitted(details) {
 	const tabId = details.tabId;
 	assert(Number.isInteger(tabId));
 	const newUrl = details.url;
-	chrome.storage.local.get('muteOnOriginChange', function(result) {
-		const muteOnOriginChange = orTrue(result.muteOnOriginChange);
-		if(muteOnOriginChange) {
-			const oldUrl = tabIdToUrl[tabId];
-			console.log("Old URL:", oldUrl);
-			let needMute = false;
-			if(oldUrl === undefined) {
-				needMute = true;
-			} else {
-				needMute = getOrigin(oldUrl) !== getOrigin(newUrl);
-			}
-			if(needMute) {
-				console.log("Muting tab because new origin:", details);
-				chrome.tabs.update(tabId, {muted: true});
-			} else {
-				console.log("Not muting tab because same origin:", details);
-			}
+	if(settings.muteOnOriginChange) {
+		const oldUrl = tabIdToUrl[tabId];
+		console.log("Old URL:", oldUrl);
+		const needMute =
+			oldUrl !== undefined &&
+			getOrigin(oldUrl) !== getOrigin(newUrl);
+		if(needMute) {
+			console.log("Muting tab because new origin:", details);
+			chrome.tabs.update(tabId, {muted: true});
+		} else {
+			console.log("Not muting tab because same origin:", details);
 		}
-		tabIdToUrl[tabId] = newUrl;
-	});
+	}
+	tabIdToUrl[tabId] = newUrl;
 }
 
 function messageFromContentScript(request, sender, sendResponse) {
@@ -79,3 +99,6 @@ chrome.webNavigation.onCommitted.addListener(navigationCommitted);
 
 // Messages from content scripts telling us to unmute
 chrome.runtime.onMessage.addListener(messageFromContentScript);
+
+// Storage events that notify us of settings changes
+chrome.storage.onChanged.addListener(storageChanged);
