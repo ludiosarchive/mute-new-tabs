@@ -24,8 +24,8 @@ extension; see the instructions below.**
 
 Mute New Tabs isn't in the Chrome Web Store because 1) I don't want to deal
 with it, 2) you shouldn't blindly trust an auto-updating extension with
-`webNavigation` and `tabs` permissions, and 3) it still requires touching
-`chrome://flags`.
+`webNavigation` and `tabs` permissions plus content script injections, and
+3) it still requires touching `chrome://flags`.
 
 
 Install
