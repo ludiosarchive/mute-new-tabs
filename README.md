@@ -6,10 +6,10 @@ until you manually un-mute them by clicking the mute/un-mute icon in the tab.
 
 It also mutes the tab when you navigate to a different origin.
 
-It also injects a content script on {youtube, vimeo, soundcloud}.com that unmutes
-the tab when you click on a volume control on the page.  It does this because
-interacting with a volume control shows a clear intent to change the volume,
-and the tab mute shouldn't get in the way.
+It also injects a content script on {youtube, vimeo, soundcloud, twitter}.com that
+unmutes the tab when you click on a volume control on the page.
+It does this because interacting with a volume control shows a clear intent to
+change the volume, and the tab mute shouldn't get in the way.
 
 All three features can be toggled in the extension's popup window:
 

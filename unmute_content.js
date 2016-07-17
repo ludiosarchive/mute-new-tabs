@@ -10,12 +10,15 @@ function unmuteMyTab() {
 }
 
 /**
- * Get classnames of element and its parents, up to `depth` names.
+ * Get classNames of element and its parents, up to `depth` elements,
+ * but possibly more class names, because an element can have more than one.
  */
 function getClassNames(elem, depth) {
 	const classNames = [];
 	while(elem && depth--) {
-		classNames.push(elem.className);
+		for(const name of elem.classList) {
+			classNames.push(name);
+		}
 		elem = elem.parentNode;
 	}
 	return classNames;
@@ -27,6 +30,8 @@ function mouseDown(ev) {
 	if(host === "www.youtube.com" && /^ytp-(volume|mute)-/.test(ev.target.className)) {
 		unmuteMyTab();
 	} else if(host === "vimeo.com" && getClassNames(ev.target, 3).includes("volume")) {
+		unmuteMyTab();
+	} else if(host === "twitter.com" && getClassNames(ev.target, 3).includes("sound-button")) {
 		unmuteMyTab();
 	} else if(host === "soundcloud.com" && /^volume__/.test(ev.target.className)) {
 		unmuteMyTab();
