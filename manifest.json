@@ -4,8 +4,8 @@
 	"description": "Mutes new tabs until you un-mute them",
 	"version": "0.1",
 	"background": {
-		"persistent": false,
-		"scripts": ["mute_tabs.js"]
+		"scripts": ["mute_tabs.js"],
+		"persistent": true
 	},
 	"browser_action": {
 		"default_icon": "icon/Keep-quiet-sign-by-Rones-fs8.png",
@@ -16,6 +16,7 @@
 	},
 	"permissions": [
 		"storage",
+		"webNavigation",
 		"tabs"
 	]
 }
