@@ -8,7 +8,7 @@ muting API to automatically mute new tabs.  If needed, you can un-mute a tab
 by clicking the mute/un-mute icon on the tab itself.
 
 **Note: you must enable "Tab audio muting UI control" in `chrome://flags` to see the
-mute/un-mute icon on the tab.**
+mute/un-mute icon on the tab.**  (Available in Chrome 51+)
 
 Besides muting new tabs, the extension also:
 
