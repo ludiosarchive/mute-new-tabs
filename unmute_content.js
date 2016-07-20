@@ -33,6 +33,8 @@ function mouseDown(ev) {
 		unmuteMyTab();
 	} else if(host === "twitter.com" && getClassNames(ev.target, 3).includes("sound-button")) {
 		unmuteMyTab();
+	} else if(host === "vine.co" && getClassNames(ev.target, 3).includes("VolumeControl")) {
+		unmuteMyTab();
 	} else if(host === "soundcloud.com" && /^volume__/.test(ev.target.className)) {
 		unmuteMyTab();
 	} else if(host === "mynoise.net") {
