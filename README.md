@@ -36,8 +36,8 @@ with it, 2) you shouldn't blindly trust an auto-updating extension with
 3) it still requires touching `chrome://flags`.
 
 
-Install
-===
+## Install
+
 Note that if you install an extension from outside the Chrome Web Store, you'll see a
 "developer mode extensions" nag popup every time you start Chrome, unless you're
 using Chrome on Linux (lucky you!).  On other platforms, if you're crazy enough, you
@@ -60,14 +60,14 @@ to get rid of it (I have not tested this).
 7.	Check "Allow in incognito" if you also want incognito tabs to be muted by default.
 
 
-Thanks
-===
+## Thanks
+
 Thanks to [rones](https://openclipart.org/user-detail/rones) for
 [the keep-quiet sign](https://openclipart.org/detail/219746/keep-quiet-sign) that I've used for the extension icon.
 
 
-The epidemic of autoplaying videos
-===
+## The epidemic of autoplaying videos
+
 *	[Autoplay is bad for all users](http://www.punkchip.com/autoplay-is-bad-for-all-users/)
 
 *	[Autoplay is still bad for all users](http://www.punkchip.com/autoplay-is-still-bad-for-all-users/)
