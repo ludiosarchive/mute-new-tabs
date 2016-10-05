@@ -54,6 +54,11 @@ function mouseDown(ev) {
 		if(classNames.includes("volume_icon") || classNames.includes("volume_slider")) {
 			unmuteMyTab();
 		}
+	} else if(host === "vid.me") {
+		const classNames = getClassNames(ev.target, 4);
+		if(classNames.includes("vjs-volume-menu-button") || classNames.includes("vjs-volume-bar")) {
+			unmuteMyTab();
+		}
 	}
 }
 
