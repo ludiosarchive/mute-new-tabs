@@ -44,6 +44,11 @@ function mouseDown(ev) {
 		if(classNames.includes("mixer") || classNames.includes("controlers")) {
 			unmuteMyTab();
 		}
+	} else if(host === "www.kickstarter.com") {
+		const classNames = getClassNames(ev.target, 4);
+		if(classNames.includes("volume") || classNames.includes("volume_container")) {
+			unmuteMyTab();
+		}
 	}
 }
 

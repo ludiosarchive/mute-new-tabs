@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Mute New Tabs",
 	"description": "Mutes new tabs until you un-mute them",
-	"version": "0.3.4",
+	"version": "0.3.5",
 	"background": {
 		"scripts": ["mute_tabs.js"],
 		"persistent": true
@@ -23,7 +23,8 @@
 				"https://www.twitch.tv/*",
 				"https://twitter.com/*",
 				"https://vine.co/*",
-				"*://mynoise.net/*"
+				"*://mynoise.net/*",
+				"https://www.kickstarter.com/*"
 			],
 			"all_frames": true,
 			"js": ["unmute_content.js"]
@@ -37,7 +38,8 @@
 			"https://www.twitch.tv/*",
 			"https://twitter.com/*",
 			"https://vine.co/*",
-			"*://mynoise.net/*"
+			"*://mynoise.net/*",
+			"https://www.kickstarter.com/*"
 		]
 	},
 	"permissions": [
