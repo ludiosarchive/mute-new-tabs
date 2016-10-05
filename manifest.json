@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Mute New Tabs",
 	"description": "Mutes new tabs until you un-mute them",
-	"version": "0.3.5",
+	"version": "0.3.6",
 	"background": {
 		"scripts": ["mute_tabs.js"],
 		"persistent": true
@@ -24,7 +24,8 @@
 				"https://twitter.com/*",
 				"https://vine.co/*",
 				"*://mynoise.net/*",
-				"https://www.kickstarter.com/*"
+				"https://www.kickstarter.com/*",
+				"*://store.steampowered.com/*"
 			],
 			"all_frames": true,
 			"js": ["unmute_content.js"]
@@ -39,7 +40,8 @@
 			"https://twitter.com/*",
 			"https://vine.co/*",
 			"*://mynoise.net/*",
-			"https://www.kickstarter.com/*"
+			"https://www.kickstarter.com/*",
+			"*://store.steampowered.com/*"
 		]
 	},
 	"permissions": [

@@ -49,6 +49,11 @@ function mouseDown(ev) {
 		if(classNames.includes("volume") || classNames.includes("volume_container")) {
 			unmuteMyTab();
 		}
+	} else if(host === "store.steampowered.com") {
+		const classNames = getClassNames(ev.target, 3);
+		if(classNames.includes("volume_icon") || classNames.includes("volume_slider")) {
+			unmuteMyTab();
+		}
 	}
 }
 
