@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Mute New Tabs",
 	"description": "Mutes new tabs until you un-mute them",
-	"version": "0.3.8",
+	"version": "0.3.9",
 	"background": {
 		"scripts": ["mute_tabs.js"],
 		"persistent": true
@@ -27,7 +27,8 @@
 				"https://www.kickstarter.com/*",
 				"*://store.steampowered.com/*",
 				"https://vid.me/*",
-				"*://www.cnn.com/*"
+				"*://www.cnn.com/*",
+				"*://www.liveleak.com/*"
 			],
 			"all_frames": true,
 			"js": ["unmute_content.js"]
@@ -45,7 +46,8 @@
 			"https://www.kickstarter.com/*",
 			"*://store.steampowered.com/*",
 			"https://vid.me/*",
-			"*://www.cnn.com/*"
+			"*://www.cnn.com/*",
+			"*://www.liveleak.com/*"
 		]
 	},
 	"permissions": [

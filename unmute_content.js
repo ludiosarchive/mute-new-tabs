@@ -29,6 +29,8 @@ const host = document.location.host;
 function mouseDown(ev) {
 	if(host === "www.youtube.com" && /^ytp-(volume|mute)-/.test(ev.target.className)) {
 		unmuteMyTab();
+	} else if(host === "www.liveleak.com" && /_((un)?muteButton|volumeSlider)/.test(ev.target.id)) {
+		unmuteMyTab();
 	} else if(host === "vimeo.com" && getClassNames(ev.target, 3).includes("volume")) {
 		unmuteMyTab();
 	} else if(host === "twitter.com" && getClassNames(ev.target, 3).includes("sound-button")) {
