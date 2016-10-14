@@ -66,3 +66,27 @@ function mouseDown(ev) {
 // 1) the elements sometimes show up after the DOM is ready
 // 2) the elements may be swapped out when switching to another video
 document.addEventListener('mousedown', mouseDown, {passive: true});
+
+if(host === "www.cnn.com") {
+	const seen = new Set();
+	// cnn.com uses <video> elements with controls="true".  The volume controls
+	// are part of the Shadow DOM, and click events on the controls don't result
+	// in any kind of click event that we can detect.   We need to use another
+	// approach to detect intentional use of the volume control, so we use the
+	// 'volumechange' event.
+	//
+	// We assume here that only user interaction leads to a volumechange event,
+	// so if the page violates this expectation in the future, this has to be
+	// reworked to ignore some volumechange events.
+	//
+	// The <video> elements aren't on the page when this script is first run,
+	// so check for new <video>s often.
+	setInterval(() => {
+		for(const video of document.getElementsByTagName('video')) {
+			if(!seen.has(video)) {
+				video.addEventListener('volumechange', unmuteMyTab, false);
+				seen.add(video);
+			}
+		}
+	}, 2000);
+}
