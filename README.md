@@ -7,8 +7,8 @@ allowing websites to make noise without your permission.  It uses Chrome's tab
 muting API to automatically mute new tabs.  If needed, you can un-mute a tab
 by clicking the mute/un-mute icon on the tab itself.
 
-**Note: you must enable "Tab audio muting UI control" in `chrome://flags` to see the
-mute/un-mute icon on the tab.**  (Available in Chrome 51+)
+**Note: you must enable "Tab audio muting UI control" in `chrome://flags` to be
+able to click the mute/un-mute icon on the tab.**  (Available in Chrome 51+)
 
 Besides muting new tabs, the extension also:
 
@@ -30,13 +30,14 @@ All four features can be toggled in the extension's popup window:
 'Mute on origin change', 'Mute all tabs on startup', and
 'Unmute when clicking a volume control on a page'" width="243" height="189">
 
-Mute New Tabs isn't in the Chrome Web Store because 1) I don't want to deal
-with it, 2) you shouldn't blindly trust an auto-updating extension with
-`webNavigation` and `tabs` permissions plus content script injections, and
-3) it still requires touching `chrome://flags`.
+
+## Install from the Chrome Web Store
+
+Thanks to @matthiasgoergens, this extension is
+[now available in the Chrome Web Store](https://chrome.google.com/webstore/detail/mute-new-tabs/inggmeoccpodpdhmejgmgagmmcdgdkih).
 
 
-## Install
+## Install from source
 
 Note that if you install an extension from outside the Chrome Web Store, you'll see a
 "developer mode extensions" nag popup every time you start Chrome, unless you're
