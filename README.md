@@ -20,9 +20,9 @@ Besides muting new tabs, the extension also:
 3.	Injects a [content script](https://github.com/ludios/mute-new-tabs/blob/master/unmute_content.js)
 	on {youtube, vimeo, soundcloud, twitter}.com
 	([and more](https://github.com/ludios/mute-new-tabs/blob/master/manifest.json#L19))
-	to unmute the tab when you click on a volume control on the page.
-	Clicking a volume control shows a clear intent to change the volume, so the
-	tab mute shouldn't get in the way.
+	to unmute the tab when you click on an in-page volume control.  Clicking a
+   volume control shows a clear intent to change the volume, so the tab mute
+   shouldn't get in the way.
 
 All four features can be toggled in the extension's popup window:
 
