@@ -87,14 +87,14 @@ function navigationCommitted(details) {
 		// Ignore navigation in subframes
 		return;
 	}
-	const tabId = details.tabId;
-	assert(Number.isInteger(tabId));
 	const newUrl = details.url;
+	const tabId  = details.tabId;
+	assert(Number.isInteger(tabId));
 	if(settings.muteOnOriginChange) {
 		const oldUrl = tabIdToUrl[tabId];
 		console.log("Old URL:", oldUrl);
 		const needMute =
-			oldUrl !== undefined &&
+			oldUrl            !== undefined &&
 			getOrigin(oldUrl) !== getOrigin(newUrl);
 		if(needMute) {
 			console.log("Muting tab because new origin:", details);
