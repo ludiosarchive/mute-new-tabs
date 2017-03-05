@@ -50,6 +50,8 @@ function mouseDown(ev) {
 		unmuteMyTab();
 	} else if(host === "www.twitch.tv" && getClassNames(ev.target, 4).includes("player-volume")) {
 		unmuteMyTab();
+	} else if(host === "player.twitch.tv" && getClassNames(ev.target, 4).includes("player-volume")) {
+		unmuteMyTab();
 	} else if(host === "mynoise.net") {
 		const classNames = getClassNames(ev.target, 5);
 		if(classNames.includes("mixer") || classNames.includes("controlers")) {
