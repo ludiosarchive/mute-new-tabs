@@ -33,8 +33,9 @@ All four features can be toggled in the extension's popup window:
 
 ## Install from the Chrome Web Store
 
-Thanks to [@matthiasgoergens](https://github.com/matthiasgoergens), this extension is
-**[now available in the Chrome Web Store](https://chrome.google.com/webstore/detail/mute-new-tabs/inggmeoccpodpdhmejgmgagmmcdgdkih)**.
+This extension is **[available in the Chrome Web Store](https://chrome.google.com/webstore/detail/mute-new-tabs/inggmeoccpodpdhmejgmgagmmcdgdkih)**.
+
+Thanks to [@matthiasgoergens](https://github.com/matthiasgoergens) for doing the initial setup and paying the fee.
 
 
 ## Install from source
