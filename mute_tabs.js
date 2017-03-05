@@ -11,17 +11,17 @@ function assert(condition, message) {
 }
 
 const settings = {
-	muteNewTabs: true,
-	muteOnOriginChange: true,
-	muteAllTabsOnStartup: true,
+	muteNewTabs:           true,
+	muteOnOriginChange:    true,
+	muteAllTabsOnStartup:  true,
 	unmuteOnVolumeControl: true
 }
 
 // Populate settings as soon as possible
 chrome.storage.local.get(['muteNewTabs', 'muteOnOriginChange', 'muteAllTabsOnStartup', 'unmuteOnVolumeControl'], function(result) {
-	settings.muteNewTabs = orTrue(result.muteNewTabs);
-	settings.muteOnOriginChange = orTrue(result.muteOnOriginChange);
-	settings.muteAllTabsOnStartup = orTrue(result.muteAllTabsOnStartup);
+	settings.muteNewTabs           = orTrue(result.muteNewTabs);
+	settings.muteOnOriginChange    = orTrue(result.muteOnOriginChange);
+	settings.muteAllTabsOnStartup  = orTrue(result.muteAllTabsOnStartup);
 	settings.unmuteOnVolumeControl = orTrue(result.unmuteOnVolumeControl);
 
 	if(settings.muteAllTabsOnStartup) {
