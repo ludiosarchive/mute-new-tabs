@@ -29,6 +29,7 @@
 				"*://store.steampowered.com/*",
 				"https://vid.me/*",
 				"*://www.cnn.com/*",
+				"*://edition.cnn.com/*",
 				"*://www.liveleak.com/*"
 			],
 			"all_frames": true,
@@ -49,6 +50,7 @@
 			"*://store.steampowered.com/*",
 			"https://vid.me/*",
 			"*://www.cnn.com/*",
+			"*://edition.cnn.com/*",
 			"*://www.liveleak.com/*"
 		]
 	},
