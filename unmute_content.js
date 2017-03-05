@@ -26,6 +26,15 @@ function getClassNames(elem, depth) {
 
 const host = document.location.host;
 
+function includesAny(haystack, needles) {
+	for(const needle of needles) {
+		if(haystack.includes(needle)) {
+			return true;
+		}
+	}
+	return false;
+}
+
 function mouseDown(ev) {
 	if(host === "www.youtube.com" && /^ytp-(volume|mute)-/.test(ev.target.className)) {
 		unmuteMyTab();
@@ -35,7 +44,7 @@ function mouseDown(ev) {
 		unmuteMyTab();
 	} else if(host === "twitter.com" && getClassNames(ev.target, 4).includes("volume-control-container")) {
 		unmuteMyTab();
-	} else if(host === "vine.co" && getClassNames(ev.target, 3).includes("VolumeControl")) {
+	} else if(host === "vine.co" && includesAny(getClassNames(ev.target, 3), ["VolumeControl", "vine-audio"])) {
 		unmuteMyTab();
 	} else if(host === "soundcloud.com" && /^volume__/.test(ev.target.className)) {
 		unmuteMyTab();
