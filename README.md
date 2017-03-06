@@ -31,11 +31,9 @@ All four features can be toggled in the extension's popup window:
 
 ## Install from the Chrome Web Store
 
-This extension is **[available in the Chrome Web Store](https://chrome.google.com/webstore/detail/mute-new-tabs/inggmeoccpodpdhmejgmgagmmcdgdkih)**.
+This extension is **[available in the Chrome Web Store](https://chrome.google.com/webstore/detail/mute-new-tabs/inggmeoccpodpdhmejgmgagmmcdgdkih)**.  **Requires Chrome 55+**.
 
-**Requires Chrome 55+**.
-
-[How it uses the permissions it requests](https://github.com/ludios/mute-new-tabs/issues/7#issue-212052383).
+[How Mute New Tabs uses the permissions it requests](https://github.com/ludios/mute-new-tabs/issues/7#issue-212052383).
 
 
 ## Install from source
