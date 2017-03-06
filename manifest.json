@@ -1,6 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Mute New Tabs",
+	"short_name": "Mute New Tabs",
 	"description": "Mutes new tabs until you un-mute them",
 	"version": "1.0.0",
 	"minimum_chrome_version": "55",
