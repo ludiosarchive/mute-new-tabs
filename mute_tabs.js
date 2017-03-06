@@ -14,25 +14,6 @@ function orTrue(v) {
 	return typeof v === "boolean" ? v : true;
 }
 
-const settings = {
-	muteNewTabs:           true,
-	muteOnOriginChange:    true,
-	muteAllTabsOnStartup:  true,
-	unmuteOnVolumeControl: true
-}
-
-// Populate settings as soon as possible
-chrome.storage.local.get(['muteNewTabs', 'muteOnOriginChange', 'muteAllTabsOnStartup', 'unmuteOnVolumeControl'], function(result) {
-	settings.muteNewTabs           = orTrue(result.muteNewTabs);
-	settings.muteOnOriginChange    = orTrue(result.muteOnOriginChange);
-	settings.muteAllTabsOnStartup  = orTrue(result.muteAllTabsOnStartup);
-	settings.unmuteOnVolumeControl = orTrue(result.unmuteOnVolumeControl);
-
-	if(settings.muteAllTabsOnStartup) {
-		muteAllTabs();
-	}
-});
-
 function keyChanged(key, newValue) {
 	assert(typeof key === "string");
 	if(settings.hasOwnProperty(key)) {
@@ -52,42 +33,50 @@ function storageChanged(changes, namespace) {
 	}
 }
 
-function muteTab(tabId) {
-	assert(Number.isInteger(tabId));
-	chrome.tabs.update(tabId, {muted: true});
+// i.e. tab is a window of type "normal", not "popup", "panel", "app", or "devtools"
+function isTabInNormalWindow(tab) {
+	const windowId = tab.windowId;
+	assert(Number.isInteger(windowId));
+	return windowIdToType[windowId] === "normal";
 }
 
-function unmuteTab(tabId) {
-	assert(Number.isInteger(tabId));
-	chrome.tabs.update(tabId, {muted: false});
-}
-
-function muteAllTabs() {
-	chrome.tabs.query({}, function(tabs) {
-		for(const tab of tabs) {
-			muteTab(tab.id);
-		}
-	});
-}
-
-const tabIdToUrl = Object.create(null);
-
-function handleNewTab(tab) {
-	const tabId = tab.id;
-	console.log(`Tab was created: ${tabId}`);
-	// Don't bother to add the tab to tabIdToUrl because tabIdToUrl doesn't
-	// reliably know about all tabs (e.g. startup or extension reloaded).
-	if(settings.muteNewTabs) {
-		muteTab(tabId);
+function muteTab(tab) {
+	if(!isTabInNormalWindow(tab)) {
+		console.log(`Not muting tab ${tab.id}, url=${inspect(tab.url)} because it's not in a normal window`);
 	} else {
-		console.log("Not muting because !settings.muteNewTabs");
+		console.log(`Muting tab ${tab.id}, url=${inspect(tab.url)}`);
+	}
+	chrome.tabs.update(tab.id, {muted: true});
+}
+
+function unmuteTab(tab) {
+	chrome.tabs.update(tab.id, {muted: false});
+}
+
+function handleNewTab(tab, doMute) {
+	const tabId = tab.id;
+	console.log(`Tab was created: ${tabId}, doMute=${doMute}`);
+	tabIdToTab[tabId] = tab;
+	if(doMute) {
+		muteTab(tab);
 	}
 }
 
 function handleCloseTab(tabId) {
-	const url = tabIdToUrl[tabId];
-	console.log(`Tab was closed: ${tabId} with URL ${url}`);
-	delete tabIdToUrl[tabId];
+	console.log(`Tab was closed: ${tabId}`);
+	delete tabIdToTab[tabId];
+}
+
+function handleNewWindow(window) {
+	const windowId = window.id;
+	const type     = window.type;
+	console.log(`Window was created: ${windowId}, type=${inspect(type)}`);
+	windowIdToType[windowId] = type;
+}
+
+function handleCloseWindow(windowId) {
+	const type = windowIdToType[windowId];
+	console.log(`Window was closed: ${windowId}, type=${inspect(type)}`);
 }
 
 function getOrigin(url) {
@@ -100,20 +89,18 @@ function navigationCommitted(details) {
 		return;
 	}
 	const newUrl = details.url;
-	const tabId  = details.tabId;
-	assert(Number.isInteger(tabId));
+	const tab    = tabIdToTab[details.tabId];
 	if(settings.muteOnOriginChange) {
-		const oldUrl    = tabIdToUrl[tabId];
-		const newOrigin = oldUrl === undefined || getOrigin(oldUrl) !== getOrigin(newUrl);
+		const oldUrl    = tab.url;
+		const newOrigin = oldUrl == null || getOrigin(oldUrl) !== getOrigin(newUrl);
 		console.log(
-			`Tab was navigated: ${tabId} from ${oldUrl} to ${newUrl} ` +
+			`Tab was navigated: ${tab.id} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
 			`(${newOrigin ? "new origin" : "same origin"})`
 		);
 		if(newOrigin) {
-			muteTab(tabId);
+			muteTab(tab);
 		}
 	}
-	tabIdToUrl[tabId] = newUrl;
 }
 
 function messageFromContentScript(request, sender, sendResponse) {
@@ -124,13 +111,60 @@ function messageFromContentScript(request, sender, sendResponse) {
 	if(!settings.unmuteOnVolumeControl) {
 		return;
 	}
-	const tabId = sender.tab.id;
-	assert(Number.isInteger(tabId));
-	unmuteTab(tabId);
+	unmuteTab(sender.tab);
 }
 
-chrome.tabs.onCreated.addListener(handleNewTab);
-chrome.tabs.onRemoved.addListener(handleCloseTab);
-chrome.webNavigation.onCommitted.addListener(navigationCommitted);
-chrome.runtime.onMessage.addListener(messageFromContentScript);
-chrome.storage.onChanged.addListener(storageChanged);
+function getAllWindows() {
+	return new Promise(function(resolve) {
+		chrome.windows.getAll(resolve);
+	});
+}
+
+function getAllTabs() {
+	return new Promise(function(resolve) {
+		chrome.tabs.query({}, resolve);
+	});
+}
+
+function getStorageLocal(keys) {
+	return new Promise(function(resolve) {
+		chrome.storage.local.get(keys, resolve);
+	});
+}
+
+const settings = {
+	muteNewTabs:           true,
+	muteOnOriginChange:    true,
+	muteAllTabsOnStartup:  true,
+	unmuteOnVolumeControl: true
+}
+const tabIdToTab     = Object.create(null);
+const windowIdToType = Object.create(null);
+
+async function start() {
+	chrome.storage.onChanged.addListener(storageChanged);
+	const result = await getStorageLocal(['muteNewTabs', 'muteOnOriginChange', 'muteAllTabsOnStartup', 'unmuteOnVolumeControl']);
+	settings.muteNewTabs           = orTrue(result.muteNewTabs);
+	settings.muteOnOriginChange    = orTrue(result.muteOnOriginChange);
+	settings.muteAllTabsOnStartup  = orTrue(result.muteAllTabsOnStartup);
+	settings.unmuteOnVolumeControl = orTrue(result.unmuteOnVolumeControl);
+
+	chrome.windows.onCreated.addListener(handleNewWindow);
+	chrome.windows.onRemoved.addListener(handleCloseWindow);
+	const windows = await getAllWindows();
+	for(const window of windows) {
+		handleNewWindow(window);
+	}
+
+	chrome.tabs.onCreated.addListener(tab => handleNewTab(tab, settings.muteNewTabs));
+	chrome.tabs.onRemoved.addListener(handleCloseTab);
+	const tabs = await getAllTabs();
+	for(const tab of tabs) {
+		handleNewTab(tab, settings.muteAllTabsOnStartup);
+	}
+
+	chrome.webNavigation.onCommitted.addListener(navigationCommitted);
+	chrome.runtime.onMessage.addListener(messageFromContentScript);
+}
+
+start();
