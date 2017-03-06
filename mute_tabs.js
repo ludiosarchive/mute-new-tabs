@@ -103,11 +103,12 @@ function navigationCommitted(details) {
 	const tabId  = details.tabId;
 	assert(Number.isInteger(tabId));
 	if(settings.muteOnOriginChange) {
-		const oldUrl = tabIdToUrl[tabId];
-		const newOrigin =
-			oldUrl            === undefined ||
-			getOrigin(oldUrl) !== getOrigin(newUrl);
-		console.log(`Tab was navigated: ${tabId} from ${oldUrl} to ${newUrl} (${newOrigin ? "new origin" : "same origin"})`);
+		const oldUrl    = tabIdToUrl[tabId];
+		const newOrigin = oldUrl === undefined || getOrigin(oldUrl) !== getOrigin(newUrl);
+		console.log(
+			`Tab was navigated: ${tabId} from ${oldUrl} to ${newUrl} ` +
+			`(${newOrigin ? "new origin" : "same origin"})`
+		);
 		if(newOrigin) {
 			muteTab(tabId);
 		}
