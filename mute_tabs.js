@@ -100,7 +100,10 @@ function navigationCommitted(details) {
 		return;
 	}
 	if(settings.muteOnOriginChange) {
-		const newOrigin = oldUrl == null || getOrigin(oldUrl) !== getOrigin(newUrl);
+		// Because the "Mute new tabs" option can be disabled, and new tabs
+		// navigate from `undefined` to chrome:// or chrome-*://, treat any
+		// undefined `oldUrl` as something that doesn't need a mute.
+		const newOrigin = oldUrl != null || getOrigin(oldUrl) !== getOrigin(newUrl);
 		console.log(
 			`Tab was navigated: ${tabId} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
 			`(${newOrigin ? "new origin" : "same origin"})`
