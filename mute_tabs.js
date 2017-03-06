@@ -57,6 +57,7 @@ function handleNewTab(tab, doMute) {
 	const tabId = tab.id;
 	console.log(`Tab was created: ${tabId}, doMute=${doMute}`);
 	tabIdToTab[tabId] = tab;
+	tabIdToUrl[tabId] = null;
 	if(doMute) {
 		muteTab(tab);
 	}
@@ -100,10 +101,13 @@ function navigationCommitted(details) {
 		return;
 	}
 	if(settings.muteOnOriginChange) {
-		// Because the "Mute new tabs" option can be disabled, and new tabs
-		// navigate from `undefined` to chrome:// or chrome-*://, treat any
-		// undefined `oldUrl` as something that doesn't need a mute.
-		const newOrigin = oldUrl != null || getOrigin(oldUrl) !== getOrigin(newUrl);
+		// New tabs navigate from `null` to chrome://* or chrome-*://*; treat
+		// those as not needing mute (background: the "Mute new tabs" option can
+		// be disabled, so we have to care about this).
+		//
+		// Some tabs for which we don't have information may navigate from
+		// `undefined`; treat those as needing mute.
+		const newOrigin = oldUrl === undefined || (oldUrl !== null && getOrigin(oldUrl) !== getOrigin(newUrl));
 		console.log(
 			`Tab was navigated: ${tabId} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
 			`(${newOrigin ? "new origin" : "same origin"})`
