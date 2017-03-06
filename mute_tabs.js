@@ -1,9 +1,5 @@
 "use strict";
 
-function orTrue(v) {
-	return typeof v === "boolean" ? v : true;
-}
-
 function assert(condition, message) {
 	if(!condition) {
 		throw message || "Assertion failed";
@@ -12,6 +8,10 @@ function assert(condition, message) {
 
 function inspect(obj) {
 	return JSON.stringify(obj);
+}
+
+function orTrue(v) {
+	return typeof v === "boolean" ? v : true;
 }
 
 const settings = {
