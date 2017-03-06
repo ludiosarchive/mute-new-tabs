@@ -41,12 +41,12 @@ function isTabInNormalWindow(tab) {
 }
 
 function muteTab(tab) {
-	if(!isTabInNormalWindow(tab)) {
-		console.log(`Not muting tab ${tab.id}, url=${inspect(tab.url)} because it's not in a normal window`);
-	} else {
+	if(isTabInNormalWindow(tab)) {
 		console.log(`Muting tab ${tab.id}, url=${inspect(tab.url)}`);
+		chrome.tabs.update(tab.id, {muted: true});
+	} else {
+		console.log(`Not muting tab ${tab.id}, url=${inspect(tab.url)} because it's not in a normal window`);
 	}
-	chrome.tabs.update(tab.id, {muted: true});
 }
 
 function unmuteTab(tab) {
