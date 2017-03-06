@@ -5,9 +5,9 @@ function byId(id) {
 }
 
 const toggles = {
-	muteNewTabs: byId('mute-new-tabs'),
-	muteOnOriginChange: byId('mute-on-origin-change'),
-	muteAllTabsOnStartup: byId('mute-all-tabs-on-startup'),
+	muteNewTabs:           byId('mute-new-tabs'),
+	muteOnOriginChange:    byId('mute-on-origin-change'),
+	muteAllTabsOnStartup:  byId('mute-all-tabs-on-startup'),
 	unmuteOnVolumeControl: byId('unmute-on-volume-control')
 };
 const toggleKeys = Object.keys(toggles);
