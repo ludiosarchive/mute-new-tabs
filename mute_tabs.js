@@ -14,7 +14,9 @@ function orTrue(v) {
 	return typeof v === "boolean" ? v : true;
 }
 
-// i.e. tab is a window of type "normal", not "popup", "panel", "app", or "devtools"
+// i.e. tab is in a window of type "normal", not "popup", "panel", "app", or "devtools"
+// We don't mute tabs in other types of windows because they are generally trusted
+// and there is no UI control for unmuting them.
 function isTabInNormalWindow(tab) {
 	const windowId = tab.windowId;
 	assert(Number.isInteger(windowId));
