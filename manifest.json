@@ -30,6 +30,7 @@
 				"https://www.kickstarter.com/*",
 				"*://store.steampowered.com/*",
 				"https://vid.me/*",
+				"*://www.dailymotion.com/*",
 				"*://www.cnn.com/*",
 				"*://edition.cnn.com/*",
 				"*://www.liveleak.com/*"
@@ -52,6 +53,7 @@
 			"https://www.kickstarter.com/*",
 			"*://store.steampowered.com/*",
 			"https://vid.me/*",
+			"*://www.dailymotion.com/*",
 			"*://www.cnn.com/*",
 			"*://edition.cnn.com/*",
 			"*://www.liveleak.com/*"

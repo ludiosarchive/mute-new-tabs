@@ -47,6 +47,7 @@ const volumeControlChecks = {
 	,"www.kickstarter.com":    ev => includesAny(getClassNames(ev.target, 4), ["volume", "volume_container"])
 	,"store.steampowered.com": ev => includesAny(getClassNames(ev.target, 3), ["volume_icon", "volume_slider"])
 	,"vid.me":                 ev => includesAny(getClassNames(ev.target, 4), ["vjs-volume-menu-button", "vjs-volume-bar"])
+	,"www.dailymotion.com":    ev => includesAny(getClassNames(ev.target, 5), ["dmp_VolumeSlider"])
 	,"www.cnn.com":            ev => includesAny(getClassNames(ev.target, 4), ["vjs-volume-control", "vjs-mute-control"])
 	,"edition.cnn.com":        ev => includesAny(getClassNames(ev.target, 4), ["vjs-volume-control", "vjs-mute-control"])
 };
