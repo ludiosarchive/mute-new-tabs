@@ -10,6 +10,10 @@ function assert(condition, message) {
 	}
 }
 
+function inspect(obj) {
+	return JSON.stringify(obj);
+}
+
 const settings = {
 	muteNewTabs:           true,
 	muteOnOriginChange:    true,
@@ -40,8 +44,9 @@ function storageChanged(changes, namespace) {
 	for(const key in changes) {
 		const storageChange = changes[key];
 		console.log(
-			"Storage key", key, "in namespace", namespace, "changed.",
-			"Old value was", storageChange.oldValue, "; new value is", storageChange.newValue
+			`Storage key changed: namespace=${inspect(namespace)} key=${inspect(key)} ` +
+			`oldValue=${inspect(storageChange.oldValue)} ` +
+			`newValue=${inspect(storageChange.newValue)}`
 		);
 		keyChanged(key, storageChange.newValue);
 	}
@@ -65,22 +70,29 @@ function muteAllTabs() {
 	});
 }
 
-function maybeMuteNewTab(tab) {
+const tabIdToUrl = Object.create(null);
+
+function handleNewTab(tab) {
 	const tabId = tab.id;
+	console.log(`Tab was created: ${tabId}`);
+	// Don't bother to add the tab to tabIdToUrl because tabIdToUrl doesn't
+	// reliably know about all tabs (e.g. startup or extension reloaded).
 	if(settings.muteNewTabs) {
-		console.log("Muting new tab:", tab);
 		muteTab(tabId);
 	} else {
-		console.log("Not muting new tab:", tab);
+		console.log("Not muting because !settings.muteNewTabs");
 	}
+}
+
+function handleCloseTab(tabId) {
+	const url = tabIdToUrl[tabId];
+	console.log(`Tab was closed: ${tabId} with URL ${url}`);
+	delete tabIdToUrl[tabId];
 }
 
 function getOrigin(url) {
 	return new URL(url).origin;
 }
-
-// TODO: remove entries when tabs are closed
-const tabIdToUrl = Object.create(null);
 
 function navigationCommitted(details) {
 	if(details.frameId !== 0) {
@@ -92,22 +104,19 @@ function navigationCommitted(details) {
 	assert(Number.isInteger(tabId));
 	if(settings.muteOnOriginChange) {
 		const oldUrl = tabIdToUrl[tabId];
-		console.log("Old URL:", oldUrl);
-		const needMute =
-			oldUrl            !== undefined &&
+		const newOrigin =
+			oldUrl            === undefined ||
 			getOrigin(oldUrl) !== getOrigin(newUrl);
-		if(needMute) {
-			console.log("Muting tab because new origin:", details);
+		console.log(`Tab was navigated: ${tabId} from ${oldUrl} to ${newUrl} (${newOrigin ? "new origin" : "same origin"})`);
+		if(newOrigin) {
 			muteTab(tabId);
-		} else {
-			console.log("Not muting tab because same origin:", details);
 		}
 	}
 	tabIdToUrl[tabId] = newUrl;
 }
 
 function messageFromContentScript(request, sender, sendResponse) {
-	console.log("Message from content script: sender=", sender, "request=", request);
+	console.log(`Message from content script: sender=${inspect(sender.url)} request=${inspect(request)}`);
 	if(request !== "unmute") {
 		return;
 	}
@@ -119,14 +128,8 @@ function messageFromContentScript(request, sender, sendResponse) {
 	unmuteTab(tabId);
 }
 
-// New tabs
-chrome.tabs.onCreated.addListener(maybeMuteNewTab);
-
-// Navigation events in a tab
+chrome.tabs.onCreated.addListener(handleNewTab);
+chrome.tabs.onRemoved.addListener(handleCloseTab);
 chrome.webNavigation.onCommitted.addListener(navigationCommitted);
-
-// Messages from content scripts telling us to unmute
 chrome.runtime.onMessage.addListener(messageFromContentScript);
-
-// Storage events that notify us of settings changes
 chrome.storage.onChanged.addListener(storageChanged);
