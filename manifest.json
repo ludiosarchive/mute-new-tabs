@@ -19,7 +19,8 @@
 		{
 			"matches": [
 				"https://www.youtube.com/*",
-				"https://vimeo.com/*",
+				"*://vimeo.com/*",
+				"*://player.vimeo.com/*",
 				"https://soundcloud.com/*",
 				"https://www.twitch.tv/*",
 				"https://player.twitch.tv/*",
@@ -40,7 +41,8 @@
 	"externally_connectable": {
 		"matches": [
 			"https://www.youtube.com/*",
-			"https://vimeo.com/*",
+			"*://vimeo.com/*",
+			"*://player.vimeo.com/*",
 			"https://soundcloud.com/*",
 			"https://www.twitch.tv/*",
 			"https://player.twitch.tv/*",

@@ -37,6 +37,7 @@ const volumeControlChecks = {
 	 "www.youtube.com":        ev => /^ytp-(volume|mute)-/.test(ev.target.className)
 	,"www.liveleak.com":       ev => getClassNames(ev.target, 6).includes("vjs-volume-menu-button")
 	,"vimeo.com":              ev => getClassNames(ev.target, 3).includes("volume")
+	,"player.vimeo.com":       ev => getClassNames(ev.target, 3).includes("volume")
 	,"twitter.com":            ev => getClassNames(ev.target, 4).includes("volume-control-container")
 	,"vine.co":                ev => includesAny(getClassNames(ev.target, 3), ["VolumeControl", "vine-audio"])
 	,"soundcloud.com":         ev => /^volume__/.test(ev.target.className)
