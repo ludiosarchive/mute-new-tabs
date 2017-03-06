@@ -60,6 +60,7 @@ function handleNewWindow(window) {
 function handleCloseWindow(windowId) {
 	const type = windowIdToType[windowId];
 	console.log(`Window was closed: ${windowId}, type=${inspect(type)}`);
+	delete windowIdToType[windowId];
 }
 
 function getOrigin(url) {
