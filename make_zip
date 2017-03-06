@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Builds a release as a .zip file for upload to the Chrome Web Store
+
+set -eu
+
+out="mute_new_tabs.zip"
+rm -f "$out"
+zip "$out" LICENSE README.md manifest.json *.js *.html icon/*.png
