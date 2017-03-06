@@ -14,25 +14,6 @@ function orTrue(v) {
 	return typeof v === "boolean" ? v : true;
 }
 
-function keyChanged(key, newValue) {
-	assert(typeof key === "string");
-	if(settings.hasOwnProperty(key)) {
-		settings[key] = orTrue(newValue);
-	}
-}
-
-function storageChanged(changes, namespace) {
-	for(const key in changes) {
-		const storageChange = changes[key];
-		console.log(
-			`Storage key changed: namespace=${inspect(namespace)} key=${inspect(key)} ` +
-			`oldValue=${inspect(storageChange.oldValue)} ` +
-			`newValue=${inspect(storageChange.newValue)}`
-		);
-		keyChanged(key, storageChange.newValue);
-	}
-}
-
 // i.e. tab is a window of type "normal", not "popup", "panel", "app", or "devtools"
 function isTabInNormalWindow(tab) {
 	const windowId = tab.windowId;
@@ -145,6 +126,25 @@ function getStorageLocal(keys) {
 	return new Promise(function(resolve) {
 		chrome.storage.local.get(keys, resolve);
 	});
+}
+
+function keyChanged(key, newValue) {
+	assert(typeof key === "string");
+	if(settings.hasOwnProperty(key)) {
+		settings[key] = orTrue(newValue);
+	}
+}
+
+function storageChanged(changes, namespace) {
+	for(const key in changes) {
+		const storageChange = changes[key];
+		console.log(
+			`Storage key changed: namespace=${inspect(namespace)} key=${inspect(key)} ` +
+			`oldValue=${inspect(storageChange.oldValue)} ` +
+			`newValue=${inspect(storageChange.newValue)}`
+		);
+		keyChanged(key, storageChange.newValue);
+	}
 }
 
 const settings = {
