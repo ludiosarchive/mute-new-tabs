@@ -1,7 +1,7 @@
 Mute New Tabs
 ===
-Mute New Tabs is a Chrome extension that fixes the peculiar mistake of browsers
-letting websites make noise without your explicit approval.  It uses Chrome's
+Chrome allows websites to make noise with your explicit approval.  Mute New Tabs
+is a Chrome extension that fixes this peculiar design mistake.  It uses Chrome's
 tab muting API to automatically mute new tabs.  If needed, you can un-mute a
 tab by clicking the mute/un-mute icon on the tab itself.
 
