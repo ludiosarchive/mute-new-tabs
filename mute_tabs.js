@@ -65,6 +65,7 @@ function handleNewTab(tab, doMute) {
 function handleCloseTab(tabId) {
 	console.log(`Tab was closed: ${tabId}`);
 	delete tabIdToTab[tabId];
+	delete tabIdToUrl[tabId];
 }
 
 function handleNewWindow(window) {
@@ -88,13 +89,20 @@ function navigationCommitted(details) {
 		// Ignore navigation in subframes
 		return;
 	}
+	const tabId  = details.tabId;
 	const newUrl = details.url;
-	const tab    = tabIdToTab[details.tabId];
+	const oldUrl = tabIdToUrl[tabId];
+	const tab    = tabIdToTab[tabId];
+	tabIdToUrl[tabId] = newUrl;
+	if(!tab) {
+		console.log(`Tab was navigated: ${tabId} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
+		            `but we don't have the tab object`);
+		return;
+	}
 	if(settings.muteOnOriginChange) {
-		const oldUrl    = tab && tab.url;
 		const newOrigin = oldUrl == null || getOrigin(oldUrl) !== getOrigin(newUrl);
 		console.log(
-			`Tab was navigated: ${tab.id} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
+			`Tab was navigated: ${tabId} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
 			`(${newOrigin ? "new origin" : "same origin"})`
 		);
 		if(newOrigin) {
@@ -139,6 +147,7 @@ const settings = {
 	unmuteOnVolumeControl: true
 }
 const tabIdToTab     = Object.create(null);
+const tabIdToUrl     = Object.create(null);
 const windowIdToType = Object.create(null);
 
 async function start() {
