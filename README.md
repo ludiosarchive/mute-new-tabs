@@ -35,8 +35,6 @@ This extension is **[available in the Chrome Web Store](https://chrome.google.co
 
 **Requires Chrome 55+**.
 
-Thanks to [@matthiasgoergens](https://github.com/matthiasgoergens) for doing the initial setup and paying the fee.
-
 
 ## Install from source
 
@@ -66,6 +64,8 @@ to get rid of it (I have not tested this).
 
 Thanks to [rones](https://openclipart.org/user-detail/rones) for
 [the keep-quiet sign](https://openclipart.org/detail/219746/keep-quiet-sign) that I've used for the extension icon.
+
+Thanks to [@matthiasgoergens](https://github.com/matthiasgoergens) for doing the initial setup on the Chrome Web Store and paying the fee.
 
 
 ## The epidemic of autoplaying videos
