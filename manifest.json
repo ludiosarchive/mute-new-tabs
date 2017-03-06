@@ -31,6 +31,7 @@
 				"*://store.steampowered.com/*",
 				"https://vid.me/*",
 				"*://www.dailymotion.com/*",
+				"*://www.vevo.com/*",
 				"*://www.cnn.com/*",
 				"*://edition.cnn.com/*",
 				"*://www.liveleak.com/*"
@@ -54,6 +55,7 @@
 			"*://store.steampowered.com/*",
 			"https://vid.me/*",
 			"*://www.dailymotion.com/*",
+			"*://www.vevo.com/*",
 			"*://www.cnn.com/*",
 			"*://edition.cnn.com/*",
 			"*://www.liveleak.com/*"
