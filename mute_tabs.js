@@ -91,7 +91,7 @@ function navigationCommitted(details) {
 	const newUrl = details.url;
 	const tab    = tabIdToTab[details.tabId];
 	if(settings.muteOnOriginChange) {
-		const oldUrl    = tab.url;
+		const oldUrl    = tab && tab.url;
 		const newOrigin = oldUrl == null || getOrigin(oldUrl) !== getOrigin(newUrl);
 		console.log(
 			`Tab was navigated: ${tab.id} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
