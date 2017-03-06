@@ -35,6 +35,8 @@ This extension is **[available in the Chrome Web Store](https://chrome.google.co
 
 **Requires Chrome 55+**.
 
+[How it uses the permissions it requests](https://github.com/ludios/mute-new-tabs/issues/7#issue-212052383).
+
 
 ## Install from source
 
