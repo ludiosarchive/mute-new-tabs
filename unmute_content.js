@@ -56,7 +56,10 @@ const volumeControlChecks = {
 const host = document.location.host;
 
 function mouseDown(ev) {
-	if(volumeControlChecks[host](ev)) {
+	// Note that it is possible that Chrome will inject this content script into
+	// a page or frame on a domain that we don't support.
+	const check = volumeControlChecks[host];
+	if(check && check(ev)) {
 		unmuteMyTab();
 	}
 }
