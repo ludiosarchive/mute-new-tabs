@@ -1,5 +1,3 @@
-*"One person's data is another person's noise."*
-
 Mute New Tabs
 ===
 Mute New Tabs is a Chrome extension that fixes the peculiar mistake of browsers
