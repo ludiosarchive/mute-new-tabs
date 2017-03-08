@@ -25,10 +25,10 @@ function isTabInNormalWindow(tab) {
 
 function muteTab(tab) {
 	if(isTabInNormalWindow(tab)) {
-		console.log(`Muting tab ${tab.id}, url=${inspect(tab.url)}`);
+		settings.debug && console.log(`Muting tab ${tab.id}, url=${inspect(tab.url)}`);
 		chrome.tabs.update(tab.id, {muted: true});
 	} else {
-		console.log(`Not muting tab ${tab.id}, url=${inspect(tab.url)} because it's not in a normal window`);
+		settings.debug && console.log(`Not muting tab ${tab.id}, url=${inspect(tab.url)} because it's not in a normal window`);
 	}
 }
 
@@ -38,7 +38,7 @@ function unmuteTab(tab) {
 
 function handleNewTab(tab, doMute) {
 	const tabId = tab.id;
-	console.log(`Tab was created: ${tabId}, doMute=${doMute}`);
+	settings.debug && console.log(`Tab was created: ${tabId}, doMute=${doMute}`);
 	tabIdToTab[tabId] = tab;
 	tabIdToUrl[tabId] = null;
 	if(doMute) {
@@ -47,7 +47,7 @@ function handleNewTab(tab, doMute) {
 }
 
 function handleCloseTab(tabId) {
-	console.log(`Tab was closed: ${tabId}`);
+	settings.debug && console.log(`Tab was closed: ${tabId}`);
 	delete tabIdToTab[tabId];
 	delete tabIdToUrl[tabId];
 }
@@ -55,13 +55,13 @@ function handleCloseTab(tabId) {
 function handleNewWindow(window) {
 	const windowId = window.id;
 	const type     = window.type;
-	console.log(`Window was created: ${windowId}, type=${inspect(type)}`);
+	settings.debug && console.log(`Window was created: ${windowId}, type=${inspect(type)}`);
 	windowIdToType[windowId] = type;
 }
 
 function handleCloseWindow(windowId) {
 	const type = windowIdToType[windowId];
-	console.log(`Window was closed: ${windowId}, type=${inspect(type)}`);
+	settings.debug && console.log(`Window was closed: ${windowId}, type=${inspect(type)}`);
 	delete windowIdToType[windowId];
 }
 
@@ -80,7 +80,7 @@ function navigationCommitted(details) {
 	const tab    = tabIdToTab[tabId];
 	tabIdToUrl[tabId] = newUrl;
 	if(!tab) {
-		console.log(`Tab was navigated: ${tabId} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
+		settings.debug && console.log(`Tab was navigated: ${tabId} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
 		            `but we don't have the tab object`);
 		return;
 	}
@@ -92,7 +92,7 @@ function navigationCommitted(details) {
 		// Some tabs for which we don't have information may navigate from
 		// `undefined`; treat those as needing mute.
 		const newOrigin = oldUrl === undefined || (oldUrl !== null && getOrigin(oldUrl) !== getOrigin(newUrl));
-		console.log(
+		settings.debug && console.log(
 			`Tab was navigated: ${tabId} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
 			`(${newOrigin ? "new origin" : "same origin"})`
 		);
@@ -103,7 +103,7 @@ function navigationCommitted(details) {
 }
 
 function messageFromContentScript(request, sender, sendResponse) {
-	console.log(`Message from content script: sender=${inspect(sender.url)} request=${inspect(request)}`);
+	settings.debug && console.log(`Message from content script: sender=${inspect(sender.url)} request=${inspect(request)}`);
 	if(request !== "unmute") {
 		return;
 	}
@@ -141,7 +141,7 @@ function keyChanged(key, newValue) {
 function storageChanged(changes, namespace) {
 	for(const key in changes) {
 		const storageChange = changes[key];
-		console.log(
+		settings.debug && console.log(
 			`Storage key changed: namespace=${inspect(namespace)} key=${inspect(key)} ` +
 			`oldValue=${inspect(storageChange.oldValue)} ` +
 			`newValue=${inspect(storageChange.newValue)}`
@@ -154,7 +154,8 @@ const settings = {
 	muteNewTabs:           true,
 	muteOnOriginChange:    true,
 	muteAllTabsOnStartup:  true,
-	unmuteOnVolumeControl: true
+	unmuteOnVolumeControl: true,
+	debug:                 false
 }
 const tabIdToTab     = Object.create(null);
 const tabIdToUrl     = Object.create(null);
