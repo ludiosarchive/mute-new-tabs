@@ -33,6 +33,8 @@ All four features can be toggled in the extension's popup window:
 
 This extension is **[available in the Chrome Web Store](https://chrome.google.com/webstore/detail/mute-new-tabs/inggmeoccpodpdhmejgmgagmmcdgdkih)**.  **Requires Chrome 55+**.
 
+If the extension works for you, please leave a review in the store.
+
 [How Mute New Tabs uses the permissions it requests](https://github.com/ludios/mute-new-tabs/issues/7#issue-212052383).
 
 
