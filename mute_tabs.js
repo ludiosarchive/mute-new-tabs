@@ -80,8 +80,10 @@ function navigationCommitted(details) {
 	const tab    = tabIdToTab[tabId];
 	tabIdToUrl[tabId] = newUrl;
 	if(!tab) {
-		settings.debug && console.log(`Tab was navigated: ${tabId} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
-		            `but we don't have the tab object`);
+		settings.debug && console.log(
+			`Tab was navigated: ${tabId} from ${inspect(oldUrl)} to ${inspect(newUrl)} ` +
+			`but we don't have the tab object`
+		);
 		return;
 	}
 	if(settings.muteOnOriginChange) {
