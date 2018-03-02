@@ -8,6 +8,9 @@ tab by clicking the mute/un-mute icon on the tab itself.
 **Note: you must enable "Tab audio muting UI control" in `chrome://flags` to be
 able to click the mute/un-mute icon on the tab.**
 
+**Note: to restore the "Unmute tab" and "Mute tab" context menu actions in
+Chrome 64+, **disable** "Sound content setting" in `chrome://flags`.**
+
 Besides muting new tabs, the extension also:
 
 1.	Mutes tabs on startup, because Chrome doesn't remember which tabs were
