@@ -51,7 +51,7 @@ const volumeControlChecks = {
 	,"www.vevo.com":           ev => includesAny(getClassNames(ev.target, 6), ["volume"])
 	,"www.cnn.com":            ev => includesAny(getClassNames(ev.target, 4), ["vjs-volume-control", "vjs-mute-control"])
 	,"edition.cnn.com":        ev => includesAny(getClassNames(ev.target, 4), ["vjs-volume-control", "vjs-mute-control"])
-	,"archive.org":            ev => includesAny(getClassNames(ev.target, 4), ["jwmute"])
+	,"archive.org":            ev => includesAny(getClassNames(ev.target, 4), ["jw-icon-volume", "jw-slider-volume"])
 };
 
 const host = document.location.host;
