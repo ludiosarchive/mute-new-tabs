@@ -3,10 +3,7 @@ Mute New Tabs
 Chrome allows websites to make noise with your explicit approval.  Mute New Tabs
 is a Chrome extension that fixes this peculiar design mistake.  It uses Chrome's
 tab muting API to automatically mute new tabs.  If needed, you can un-mute a
-tab by clicking the mute/un-mute icon on the tab itself.
-
-**Note: you must enable "Tab audio muting UI control" in `chrome://flags` to be
-able to click the mute/un-mute icon on the tab.**
+tab by using the context menu on the tab itself.
 
 **Note: to restore the "Unmute tab" and "Mute tab" context menu actions in
 Chrome 64+, **disable** "Sound content setting" in `chrome://flags`.**
@@ -53,7 +50,7 @@ to get rid of it (I have not tested this).
 
 2.	Open `chrome://flags` in Chrome.
 
-3.	Find **Tab audio muting UI control**, click "Enable", then restart Chrome.
+3.	Find **Sound content setting**, click "Disable", then restart Chrome.
 	(Make sure to actually restart it, not just close one window.)
 
 4.	Open `chrome://extensions` in Chrome.
